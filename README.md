@@ -15,7 +15,7 @@ A estrutura de dados utilizada foi FILA, que segue a ordem universal FIFO(First 
  Pertinente e eficiente, uma vez que todas as operações em filas são concluídas em tempo constante.
  
  ******************************************************************************************** 
-Pasta e Arquivos 
+# Pasta e Arquivos 
 O programa enviado foi modularizado em 4 arquivos enviados em anexo: 
 - O documento README.md para documentação e detalhes do projeto 
 - O arquivo Makefile, para compilação do programa
@@ -24,7 +24,7 @@ O programa enviado foi modularizado em 4 arquivos enviados em anexo:
 - main.c   - Código principal
 
 ************************************************************* 
-Compilação e Execução 
+# Compilação e Execução 
 As instruções de compilação são aplicadas no sistema Linux. 
 Para compilar um código em C, usaremos o compilador gcc. O compilador é responsável por traduzir o código fonte escrito em uma linguagem específica para um arquivo que o computador saiba interpretar, ou seja, um executável. 
 Caso o compilador não esteja presente na máquina Linux, digite o comando :
