@@ -1,11 +1,11 @@
 # Escalonador-de-Processos
 
-Área de aplicação: Estrutura de Dados 
-Gabriel Gonçalves Sá 
-Email: gabrielgoncalves55@gmail.com 
-Contato: 61993776707 
+Área de aplicação: Estrutura de Dados ;
+Gabriel Gonçalves Sá ;
+Email: gabrielgoncalves55@gmail.com ; 
+Contato: 61993776707 ;
 
-******************      Escalonador de Processos       ***************** 
+# Descrição
 
 Para gerenciar o uso da CPU, o sistema operacional conta com o escalonador de processos, que determina a ordem na qual cada processo utilizará a CPU. O seu objetivo é garantir que todos os processos eventualmente sejam atendidos(evitando o starvation) 
 Uma técnica utilizada é o round-robin. Esta técnica estabelece um quantum, pequena fatia de tempo que cada processo utilizará na CPU. Após o término do quantum, o escalonador retira o processo que utilizava a CPU e o coloca atrás de todos os outros que aguardam a utilização do recurso. Neste projeto um escalonador de processos que utiliza a técnica round-robin foi simulado 
