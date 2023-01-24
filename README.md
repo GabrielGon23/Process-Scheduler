@@ -3,7 +3,7 @@
 Application Area : Data Structure ;
 Gabriel Gonçalves Sá ;
 Email: gabrielgoncalves55@gmail.com ; 
-Contato: +55 (61) 993776707 ;
+Contact: +55 (61) 993776707 ;
 
 # Description
 
