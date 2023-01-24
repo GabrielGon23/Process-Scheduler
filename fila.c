@@ -1,144 +1,144 @@
-#include "fila.h"
+#include "queue.h"
 
 /*
 
-    Implementa as funcoes da fila e a insercao de processos
+     Implements queue functions and process insertion
 
 */
 
-/*Inicializa a fila, recebe a fila,construtor e destrutor*/
+/* Initialize the queue, colect the queue, constructor and destructor */
 void queue_initialize(queue_t **q, queue_node_constructor_fn constructor,
-                      queue_node_destructor_fn destructor)
+                       queue_node_destructor_fn destructor)
 {
-    (*q) = mallocx(sizeof(queue_t)); /*Aloca espaco para lista*/
-    (*q)->back = NULL;
-    (*q)->front = NULL;              /*Frente e traseira apontam para NULL inicialmente*/
-    (*q)->size = 0;                  /*Tamanho da lista inicia 0*/
-    (*q)->constructor = constructor; /*Recebe funcao construtora e destrutora*/
-    (*q)->destructor = destructor;
+     (*q) = mallocx(sizeof(queue_t)); /* Allocate area for list */
+     (*q)->back = NULL;
+     (*q)->front = NULL; /* Front and back point to NULL initially */
+     (*q)->size = 0; /*List size starts at 0*/
+     (*q)->constructor = constructor; /* Collect constructor and destructor function */
+     (*q)->destructor = destructor;
 }
 
-/*Deleta a fila por inteiro e libera espaco de memoria
-Recebe ponteiro para ponteiro de fila pois queremos modificar ponteiro original
-Enquanto fila nao estiver vazia, desinfileiro elemento*/
+/*Deletes the entire queue and frees up memory space
+Get pointer to queue pointer because we want to modify original pointer
+While queue is not empty, unqueue element */
 void queue_delete(queue_t **q)
 {
-    while (!queue_empty(*q))
-    {
-        queue_pop(*q);
-    }
-    free(*q);
-    *q = NULL;
+     while (!queue_empty(*q))
+     {
+         queue_pop(*q);
+     }
+     free(*q);
+     *q = NULL;
 }
 
-/*Desinfileirar - Equivale a remocao na cabeca, retira o elemento da frente da fila*/
+/*Dequeue - Equivalent to removal in the head, removes the element from the front of the queue*/
 void queue_pop(queue_t *q)
 {
-    assert(!queue_empty(q));
-    /*Ponteiro auxiliar aponta para frente da fila*/
-    queue_iterator_t it = q->front;
-    /*Caso apenas um elemento, frente e traseira apontam para NULL*/
-    if (queue_size(q) == 1)
-    {
-        q->front = NULL;
-        q->back = NULL;
-    }
-    /*Caso tenha mais de um elemento,front passa a ser proximo elemento*/
-    else
-    {
-        q->front = q->front->next;
-    }
-    /*Elimino campo data do iterador, libera espaco e decrementa tamanho da lista*/
-    q->destructor(it->data);
-    free(it);
-    q->size--;
+     assert(!queue_empty(q));
+     /*Auxiliary pointer points to the front of the queue*/
+     queue_iterator_t it = q->front;
+     /*If only one element, front and back point to NULL*/
+     if (queue_size(q) == 1)
+     {
+         q->front = NULL;
+         q->back = NULL;
+     }
+     /* If you have more than one element, front becomes the next element */
+     else
+     {
+         q->front = q->front->next;
+     }
+     /* I delete the date field from the iterator, frees up space and decreases the size of the list */
+     q->destructor(it->data);
+     free(it);
+     q->size--;
 }
 
-/*Retorna dado do elemento na frente da fila*/
+/* Returns data from the element at the front of the queue */
 void *queue_front(queue_t *q)
 {
-    assert(!queue_empty(q));
-    return (q->front->data);
+     assert(!queue_empty(q));
+     return (q->front->data);
 }
 
-/*Enfileirar elemento - Equivale a insercao na cauda de uma lista
-Recebe a fila e dado a ser enfileirado*/
+/*Enqueue element - Equivalent to insertion at the tail of a list
+Receive the queue and data to be queued */
 void queue_push(queue_t *q, void *data)
 {
-    /*Cria novo no e constroi dado*/
-    queue_node_t *new_node = mallocx(sizeof(queue_node_t));
-    new_node->data = q->constructor(data);
-    new_node->next = NULL;
-    /*Se a fila vazia,ponteiro da frente aponta para novo no*/
-    if (queue_size(q) == 0)
-    {
-        q->front = new_node;
-    }
-    /*Caso contrario, ponteiro da traseira next aponta para novo no*/
-    else
-    {
-        q->back->next = new_node;
-    }
-    /*Back next passa a ser novo no*/
-    q->back = new_node;
-    /*Incrementa tamanho da lista*/
-    q->size++;
+     /*Create new node and build data*/
+     queue_node_t *new_node = mallocx(sizeof(queue_node_t));
+     new_node->data = q->constructor(data);
+     new_node->next = NULL;
+     /* If queue is empty, front pointer points to new node */
+     if (queue_size(q) == 0)
+     {
+         q->front = new_node;
+     }
+     /* Otherwise, pointer of back next points to new node */
+     else
+     {
+         q->back->next = new_node;
+     }
+     /*Back next becomes new no*/
+     q->back = new_node;
+     /*Increase the size of the list*/
+     q->size++;
 }
 
-/*Retorna o tamanho da lista*/
+/* Returns the size of the list */
 size_t queue_size(queue_t *q)
 {
-    return (q->size);
+     return(q->size);
 }
 
-/*Verifica se a fila esta vazia
-Retorna verdadeiro se a fila esta vazia, e falso caso contrario*/
+/* Check if the queue is empty
+Returns true if the queue is empty, false otherwise */
 size_t queue_empty(queue_t *q)
 {
-    return queue_size(q) == 0 ? 1 : 0;
+     return queue_size(q) == 0 ? 1:0;
 }
 
-/*Funcao adaptada de malloc, se ponteiro for NULL imprime erro*/
+/*Function adapted from malloc, if pointer is NULL prints error*/
 void *mallocx(size_t n)
 {
-    void *ptr = malloc(n);
-    if (ptr == NULL)
-    {
-        printf("Erro mallocx");
-        exit(EXIT_FAILURE);
-    }
-    return ptr;
+     void *ptr = malloc(n);
+     if (ptr == NULL)
+     {
+         printf("Error mallocx");
+         exit(EXIT_FAILURE);
+     }
+     return ptr;
 }
 
-/* **************	Implementação dos processos 	******************* */
+/* ************** Implementation of processes ******************* */
 
-/*Indicar para lista como construir uma pessoa
-Recebe ponteiro para dado generico
-Aloca espaco para 1 pessoa
-memcpy para copiar conteudo de data para ptr,no tamanho de pessoa*/
+/* Indicate to the list how to "build" a person
+Get pointer to generic data
+Allocates space for 1 person
+memcpy to copy date content to ptr, in person size */
 void *constructor_process(void *data)
 {
-    void *ptr = mallocx(sizeof(process));
-    memcpy(ptr, data, sizeof(process));
-    return ptr;
+     void *ptr = mallocx(sizeof(process));
+     memcpy(ptr, data, sizeof(process));
+     return ptr;
 }
 
-/*Funcao para destruir processo,libera o dado alocado*/
+/* Function to destroy process, release allocated data */
 void destructor_process(void *data)
 {
-    free(data);
+     free(data);
 }
 
-/*Funcao para ler processo*/
+/*Function to read process*/
 void cadastra_process(process *p)
 {
-    scanf("%s", p->name);
-    scanf("%s", p->pid);
-    scanf("%d", &p->time);
+     scanf("%s", p->name);
+     scanf("%s", p->pid);
+     scanf("%d", &p->time);
 }
 
-/*Funcao para imprimir processo da lista*/ 
-void imprime_process(const process *p)
+/*Function to print process list*/
+void print_process(const process *p)
 {
-    printf("%s %s %d ms\n", p->name, p->pid, p->final_time);
+     printf("%s %s %d ms\n", p->name, p->pid, p->final_time);
 }
