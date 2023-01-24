@@ -1,61 +1,61 @@
-#include "fila.h"
+#include "queue.h"
 
 int main(void)
 {
-    int num, quantum;
-    /*Declara a fila*/
-    queue_t *fila;
-    /*Declara processo p*/
-    process p;
-    /*Inicializa fila*/
-    queue_initialize(&fila, constructor_process, destructor_process);
+     int num, quantity;
+     /*Declare the queue*/
+     queue_t *queue;
+     /*Declare process p*/
+     process p;
+     /* Initialize queue */
+     queue_initialize(&queue, constructor_process, destructor_process);
 
-    /*Contador individual de cada processo*/
-    p.final_time = 0;
-    /*Contador de tempo total*/
-    int cont = 0;
+     /* Individual counter for each process */
+     p.final_time = 0;
+     /* Total time counter */
+     int count = 0;
 
-    /*Recebe numero de processos e valor do quantum*/
-    scanf("%d", &num);
-    scanf("%d", &quantum);
+     /* Get number of processes and quantum value */
+     scanf("%d", &num);
+     scanf("%d", &quantum);
 
-    /*Recebe processos e os coloca na traseira da fila*/
-    for (int i = 0; i < num; i++)
-    {
-        cadastra_process(&p);
-        queue_push(fila, &p);
-    }
+     /* Receive processes and put them at the back of the queue */
+     for (int i = 0; i < num; i++)
+     {
+         cadastra_process(&p);
+         queue_push(queue, &p);
+     }
 
-    /*Cada iteracao representa um periodo em que um processo utiliza o quantum*/
-    for (int i = 0; fila->size > 0; i++)
-    {
-        /*Utiliza-se o elemento da frente da lista*/
-        p = *(process *)queue_front(fila);
+     /*Each iteration represents a period in which a process uses the quantum*/
+     for (int i = 0; queue->size > 0; i++)
+     {
+         /* Use the front element of the list */
+         p = *(process *)queue_front(queue);
 
-        /*Se a diferenca entre o time do processo e o tempo individual
-        dele contado ate o momento for menor que valor do quantum:
-        Contador do tempo total adiciona a diferenca, Final time recebe valor do tempo total
-        Imprime o processo e o elimina da fila, assim segue para a proxima iteracao*/
-        if (p.time - p.final_time <= quantum)
-        {
-            cont += (p.time - p.final_time);
-            p.final_time = cont;
-            imprime_process(&p);
-            queue_pop(fila);
-            continue;
-        }
-        /*Caso contrario, incrementa quantum ao contador geral e individual do processo */
-        else
-        {
-            cont += quantum;
-            p.final_time += quantum;
-        }
+         /* If the difference between process time and individual time
+         from it counted until the moment is smaller than the value of the quantum:
+         Total time counter adds difference, Final time gets total time value
+         Prints the process and removes it from the queue, so it goes to the next iteration */
+         if (p.time - p.final_time <= quantum)
+         {
+             cont += (p.time - p.final_time);
+             p.final_time = cont;
+             print_process(&p);
+             queue_pop(queue);
+             continues;
+         }
+         /* Otherwise, increment the quantum of the general and individual counters of the process */
+         else
+         {
+             count += quantity;
+             p.final_time += quantum;
+         }
 
-        /*Desinfileira termo e o insere na traseira da fila*/
-        queue_pop(fila);
-        queue_push(fila, &p);
-    }
-    /*Destroi a fila,elimina espaco de memoria*/
-    queue_delete(&fila);
-    return 0;
+         /* Dequeue term and insert it at the back of the queue */
+         queue_pop(queue);
+         queue_push(queue, &p);
+     }
+     /* Destroy the queue, eliminate memory space */
+     queue_delete(&queue);
+     return 0;
 }
