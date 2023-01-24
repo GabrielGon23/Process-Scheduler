@@ -1,33 +1,33 @@
-# Escalonador-de-Processos
+# Process Escalonator
 
-Área de aplicação: Estrutura de Dados ;
+Área de aplicação: Data Structure ;
 Gabriel Gonçalves Sá ;
 Email: gabrielgoncalves55@gmail.com ; 
-Contato: 61993776707 ;
+Contato: +55 (61) 993776707 ;
 
-# Descrição
+# Description
 
-Para gerenciar o uso da CPU, o sistema operacional conta com o escalonador de processos, que determina a ordem na qual cada processo utilizará a CPU. O seu objetivo é garantir que todos os processos eventualmente sejam atendidos(evitando o starvation) 
-Uma técnica utilizada é o round-robin. Esta técnica estabelece um quantum, pequena fatia de tempo que cada processo utilizará na CPU. Após o término do quantum, o escalonador retira o processo que utilizava a CPU e o coloca atrás de todos os outros que aguardam a utilização do recurso. Neste projeto um escalonador de processos que utiliza a técnica round-robin foi simulado 
-A estrutura de dados utilizada foi FILA, que segue a ordem universal FIFO(First in First out). 
--> FILA: 
- Baseia-se na ideia de listas encadeadas, uma vez que enfileirar elementos corresponde a uma inserção na cauda e desenfileirar elementos corresponde a uma remoção na cabeça.
- Pertinente e eficiente, uma vez que todas as operações em filas são concluídas em tempo constante.
+To manage CPU usage, the operating system relies on the process scheduler, which determines the order in which each process will use the CPU. Its purpose is to ensure that all processes are eventually serviced (avoiding starvation)
+One technique used is round-robin. This technique establishes a quantum, a small slice of time that each process will use on the CPU. After the end of the quantum, the scheduler removes the process that used the CPU and puts it behind all the others that are waiting to use the resource. In this project a process scheduler that uses the round-robin technique was simulated
+The data structure used was FILA, which follows the universal order FIFO (First in First out).
+-> QUEUE:
+  It is based on the idea of linked lists, since enqueuing elements corresponds to an insertion in the tail and dequeuing elements corresponds to a removal in the head.
+  Relevant and efficient, since all operations on queues are completed in constant time.
  
  ******************************************************************************************** 
-# Pasta e Arquivos 
-O programa enviado foi modularizado em 4 arquivos enviados em anexo: 
-- O documento README.md para documentação e detalhes do projeto 
-- O arquivo Makefile, para compilação do programa
-- fila.h    - cabeçalho para estrutura da fila
-- fila.c    - implementação das funções
-- main.c   - Código principal
+# Folder and Files 
+The program was modularized in 4 files sent in attachment:
+- The README.md document for documentation and project details
+- The Makefile file, for compiling the program
+- queue.h - header for queue structure
+- queue.c - implementation of functions
+- main.c - Main code
 
 ************************************************************* 
-# Compilação e Execução 
-As instruções de compilação são aplicadas no sistema Linux. 
-Para compilar um código em C, usaremos o compilador gcc. O compilador é responsável por traduzir o código fonte escrito em uma linguagem específica para um arquivo que o computador saiba interpretar, ou seja, um executável. 
-Caso o compilador não esteja presente na máquina Linux, digite o comando :
+# Compilation and Execution
+Compilation instructions are applied on the Linux system.
+To compile C code, we will use the gcc compiler. The compiler is responsible for translating the source code written in a specific language to a file that the computer can interpret, that is, an executable.
+If the compiler is not present on the Linux machine, type the command:
 sudo apt install build-essential
-Após salvar os arquivos, iremos abrir o diretório em que a pasta foi salva com o comando : cd "nome_da_pasta". 
-Com o auxílio do Makefile, apenas 2 comandos são necessários : "make" e "./main". Iremos compilar o programa em c no terminal, para isso digite o comando: make. Finalmente para executar o arquivo, digite o comando: ./main
+After saving the files, we will open the directory where the folder was saved with the command: cd "name_of_folder".
+With the help of the Makefile, only 2 commands are needed: "make" and "./main". We will compile the program in c in the terminal, for that type the command: make. Finally to run the file, type the command: ./main
