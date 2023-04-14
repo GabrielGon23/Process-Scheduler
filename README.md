@@ -42,7 +42,7 @@ sudo apt install build-essential
 After saving the files, we will open the directory where the folder was saved with the command: cd "name_of_folder".
 With the help of the Makefile, only 2 commands are needed: "make" and "./main". We will compile the program in c in the terminal, for that type the command: make. Finally to run the file, type the command: ./main
 
-**_-(Português)_**
+**(Português)**
 As instruções de compilação são aplicadas no sistema Linux.
 Para compilar o código C, usaremos o compilador gcc. O compilador é responsável por traduzir o código-fonte escrito em uma linguagem específica para um arquivo que o computador possa interpretar, ou seja, um executável.
 Se o compilador não estiver presente na máquina Linux, digite o comando:
